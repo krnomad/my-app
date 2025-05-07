@@ -1,12 +1,125 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📡 Real-Time Counter App
 
-Currently, two official plugins are available:
+A real-time counter app built with **React**, **Vite**, and **Supabase**.  
+It demonstrates WebSocket-based synchronization, optimistic UI updates, error rollback, and leaderboard tracking.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- 🔁 **Real-time sync** using Supabase Realtime (Postgres + WebSocket)
+- ⚡ **Optimistic UI** update for fast feedback
+- 🧯 **Rollback** on update failure
+- 🧑‍💻 **Per-user leaderboard** using local UUID (no login)
+- ☁️ Deployable to [Vercel](https://vercel.com)
+
+---
+
+## 🖼 Architecture
+
+
+```
+\[ React App ] ---> \[ Supabase Realtime ] ---> \[ PostgreSQL DB ]
+↑                 ↓
+WebSocket <---- Update listener
+```
+
+---
+
+## 🧰 Tech Stack
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Supabase](https://supabase.com/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone this repository**
+
+```bash
+git clone https://github.com/krnomad/my-app.git
+cd my-app
+````
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Configure environment variables**
+
+Create a `.env` file:
+
+```env
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+4. **Run the app**
+
+```bash
+npm run dev
+```
+
+---
+
+## 🧪 Supabase Setup
+
+### Tables
+
+```sql
+-- Counter table
+CREATE TABLE counter (
+  id INT PRIMARY KEY,
+  value INT
+);
+
+INSERT INTO counter (id, value) VALUES (1, 0);
+
+-- Leaderboard table
+CREATE TABLE leaderboard (
+  user_id UUID PRIMARY KEY,
+  value INT
+);
+```
+
+### Realtime
+
+```sql
+-- Enable Realtime
+ALTER PUBLICATION supabase_realtime ADD TABLE counter;
+```
+
+### RLS (Optional but secure)
+
+```sql
+-- Enable RLS
+ALTER TABLE counter ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read/write" ON counter FOR ALL TO public USING (true);
+
+ALTER TABLE leaderboard ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read/write" ON leaderboard FOR ALL TO public USING (true);
+```
+
+---
+
+## 🌐 Live Demo & Links
+
+* 🔗 GitHub: [krnomad/my-app](https://github.com/krnomad/my-app)
+* 🚀 Live: *[Demo](https://my-app-nine-psi-29.vercel.app/) (Deploy via Vercel)*
+
+---
+
+## 📄 License
+
+MIT License © 2025 [krnomad](https://github.com/krnomad)
+
+```
+
