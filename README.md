@@ -4,7 +4,8 @@
 A real-time counter app built with **React**, **Vite**, and **Supabase**.  
 It demonstrates WebSocket-based synchronization, optimistic UI updates, error rollback, and leaderboard tracking.
 
-
+## 🌐 Live Demo
+* 🚀 Live: *[Demo](https://my-app-nine-psi-29.vercel.app/) (Deploy via Vercel)*
 
 ---
 
@@ -107,13 +108,6 @@ CREATE POLICY "Public read/write" ON counter FOR ALL TO public USING (true);
 ALTER TABLE leaderboard ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public read/write" ON leaderboard FOR ALL TO public USING (true);
 ```
-
----
-
-## 🌐 Live Demo & Links
-
-* 🔗 GitHub: [krnomad/my-app](https://github.com/krnomad/my-app)
-* 🚀 Live: *[Demo](https://my-app-nine-psi-29.vercel.app/) (Deploy via Vercel)*
 
 ---
 
