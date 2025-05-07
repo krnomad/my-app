@@ -115,5 +115,4 @@ CREATE POLICY "Public read/write" ON leaderboard FOR ALL TO public USING (true);
 
 MIT License © 2025 [krnomad](https://github.com/krnomad)
 
-```
 
