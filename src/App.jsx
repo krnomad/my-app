@@ -108,7 +108,7 @@ function App() {
           <p style={{ marginTop: 4 }}>This app demonstrates real-time data sync using React + Supabase.</p>
         </div>
         <a
-          href="https://github.com/krnomad/my-app"
+          href="https://github.com/krnomad/real-time-counter"
           target="_blank"
           rel="noopener noreferrer"
           title="View source on GitHub"
